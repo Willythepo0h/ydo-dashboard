@@ -1,0 +1,116 @@
+/* ====== This section is for Scholarship Demographics Section ====== */
+/* ====== SHARED ====== */
+.section-header {
+  text-align: center;
+  color: #520542;
+  margin-top: 0.5rem;
+}
+
+.section-label {
+  display: inline-block;
+  background-color: white;
+  padding: 10px 40px;
+  color: #520542;
+  font-weight: 700;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px -2px 5px gray;
+}
+
+.demographic-card {
+  background-color: white;
+  border-radius: 0px 10px 10px 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 5px gray;
+}
+
+/* ====== KPI ====== */
+.kpi-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+/* ====== DASHBOARD LAYOUT ====== */
+.demographic-section{
+  margin-top: 0.5rem;
+}
+
+.dashboard-row {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.dashboard-row.two-column {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.dashboard-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dashboard-column.center {
+  align-items: center;
+}
+
+.dashboard-column.center-vertical {
+  justify-content: center;
+}
+
+.dashboard-column.stretch > * {
+  flex: 1;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .dashboard-row.two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+/* This section is for Scholarship Category Section */
+
+.scholarship-category-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 2px 5px gray;
+}
+
+.bar-chart-wrapper {
+    margin-top: 10px;
+    align-items: center;
+}
+
+.bar-section-header {
+    text-align: center;
+    color: #205781;
+    font-size: 20px;
+    margin: 0.5em 0 0.5rem 0;
+}
+
+.bar-chart-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+    .bar-chart-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .bar-chart-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

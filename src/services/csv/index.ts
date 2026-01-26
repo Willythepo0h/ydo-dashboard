@@ -1,9 +1,16 @@
-// Responsibility: unify the pipeline for the rest of the app.
-
+// index.ts
 import { fetchCsv } from "./fetchCsv";
 import { loadCsvWithWorker } from "./loadCsvWithWorker";
+import type { RawCsvRow } from "./types";
 
-export async function loadScholarshipData() {
+let cachedData: RawCsvRow[] | null = null;
+
+export async function getScholarshipData(): Promise<RawCsvRow[]> {
+  if (cachedData) return cachedData;
+
   const csvText = await fetchCsv();
-  return loadCsvWithWorker(csvText);
+  const rows = await loadCsvWithWorker(csvText, { headerRowIndex: 1 });
+
+  cachedData = rows;
+  return rows;
 }

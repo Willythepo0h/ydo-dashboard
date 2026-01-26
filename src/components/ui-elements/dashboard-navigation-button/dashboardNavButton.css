@@ -1,0 +1,52 @@
+.dashboard-navButton-container {
+    width: clamp(90px, 100%, 100%);
+    padding: clamp(4px, 0.6vw, 8px) 0;
+    font-size: clamp(0.8rem, 1rem, 1rem);
+
+    border-radius: 5px;
+    background-color: #205781;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+
+    position: relative;
+    transition: background-color 0.1s ease, transform 0.1s ease
+}
+
+.dashboard-navButton-container--active {
+    background-color: #f5f6fa; 
+    color: #205781;
+
+    border-radius: 12px 0 0 12px;
+    transform: translateX(16px);
+}
+
+.dashboard-navButton--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dashboard-navButton-container--active::before,
+.dashboard-navButton-container--active::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background: transparent;
+}
+
+/* Top curve */
+.dashboard-navButton-container--active::before {
+    top: -16px;
+    border-bottom-right-radius: 16px;
+    box-shadow: 8px 8px 0 8px #f5f6fa;
+}
+
+/* Bottom curve */
+.dashboard-navButton-container--active::after {
+    bottom: -16px;
+    border-top-right-radius: 16px;
+    box-shadow: 8px -8px 0 8px #f5f6fa;
+}

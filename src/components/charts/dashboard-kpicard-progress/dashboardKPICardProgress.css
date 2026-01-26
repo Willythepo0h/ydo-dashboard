@@ -1,0 +1,54 @@
+.kpi-card {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 0.5em 0;
+  max-width: 300px;
+  display: flex;
+}
+
+.kpi-content-wrapper {
+    width: 100%;
+    padding: 10px
+}
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.kpi-icon {
+  font-size: 18px;
+}
+
+.kpi-label {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kpi-value {
+  font-size: 28px;
+  font-weight: 600;
+  color: #111;
+}
+
+.kpi-subtext {
+  font-size: 13px;
+  color: #666;
+}
+
+.kpi-progress {
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.kpi-progress-bar {
+  height: 100%;
+  transition: width 0.3s ease;
+  width: 0%;
+}

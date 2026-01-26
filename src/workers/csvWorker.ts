@@ -1,18 +1,7 @@
-// Runs off the main thread (heavy lifting happens here)
-// Responsibilities:
-// 1. rebuild headers (if row 2 is the header)
-// 2. parse CSV with PapaParse (worker: false here because this worker is already a separate thread)
-// NOTE: optionally project only columns you need
-// Input: raw CSV string
-// Output: array of parsed objects
-
 import Papa from "papaparse";
+import type { WorkerRequest, WorkerResponse } from "../services/csv/types";
 
-type WorkerMessage =
-  | { type: "success"; data: Record<string, unknown>[] }
-  | { type: "error"; error: string };
-
-const ALLOWED_COLUMNS = new Set([
+const DEFAULT_ALLOWED_COLUMNS = new Set([
   "ACADEMIC YEAR COVER",
   "SCHOLARSHIP TYPE",
   "SEX",
@@ -22,61 +11,61 @@ const ALLOWED_COLUMNS = new Set([
   "SUB-CATEGORY",
   "SCHOOL NAME",
   "SCHOOL CLASSIFICATION",
+  "PHASE 4:COS & CONTRACT RELEASING STATUS"
 ]);
 
-self.onmessage = (event: MessageEvent<string>) => {
-  const csvText = event.data;
+self.onmessage = (event: MessageEvent<WorkerRequest>) => {
+  const { csvText, allowedColumns, headerRowIndex = 1 } = event.data;
 
-  try {
-    Papa.parse(csvText, {
-      skipEmptyLines: true,
-      dynamicTyping: true,
-      fastMode: true,
+  const allowed = allowedColumns
+    ? new Set(allowedColumns.map(c => c.toUpperCase()))
+    : DEFAULT_ALLOWED_COLUMNS;
 
-      complete: (result) => {
-        try {
-          if (result.errors.length) {
-            postError(result.errors.map((e) => e.message).join(", "));
-            return;
-          }
+  const start = performance.now();
 
-          const rows = result.data as unknown[][];
-
-          if (rows.length < 2) {
-            postError("CSV does not contain enough rows");
-            return;
-          }
-
-          const headers = rows[1].map((h) => String(h).trim());
-          const dataRows = rows.slice(2);
-
-          const data = dataRows.map((row) => {
-            const obj: Record<string, unknown> = {};
-            
-            headers.forEach((header, i) => {
-              if (ALLOWED_COLUMNS.has(header)) {
-                obj[header] = row[i];
-              }
-            });
-
-            return Object.keys(obj).length ? obj : null;
-          })
-          .filter((row): row is Record<string, unknown> => row !== null)
-          postSuccess(data);
-        } catch (err) {
-          postError(String(err));
+  Papa.parse<Record<string, string>>(csvText, {
+    header: true,    
+    skipFirstNLines: headerRowIndex,       
+    skipEmptyLines: true,
+    transformHeader: (h) => h.trim().toUpperCase(),
+    complete: (result) => {
+      try {
+        if (result.errors.length) {
+          postError(result.errors.map(e => e.message).join(", "));
+          return;
         }
-      },
-    });
-  } catch (err) {
-    postError(String(err));
-  }
+
+        const data = result.data.map(row => {
+          const filteredRow: Record<string, string> = {};
+          for (const key in row) {
+            if (allowed.has(key)) {
+              filteredRow[key] = row[key]?.trim() ?? "";
+            }
+          }
+          return filteredRow;
+        });
+
+        console.log(
+          `csvWorker: parsed ${data.length} rows in ${(performance.now() - start).toFixed(2)}ms`
+        );
+
+        console.log("First row keys:", Object.keys(data[0] ?? {}));
+        console.log("First row full:", data[0]);
+
+        postSuccess(data);
+      } catch (err) {
+        postError(String(err));
+      }
+    }
+  });
 };
 
-function postSuccess(data: Record<string, unknown>[]) {
-  self.postMessage({ type: "success", data } satisfies WorkerMessage);
+function postSuccess(data: Record<string, string>[]) {
+  const msg: WorkerResponse = { type: "success", data };
+  self.postMessage(msg);
 }
 
 function postError(error: string) {
-  self.postMessage({ type: "error", error } satisfies WorkerMessage);
+  const msg: WorkerResponse = { type: "error", error };
+  self.postMessage(msg);
 }

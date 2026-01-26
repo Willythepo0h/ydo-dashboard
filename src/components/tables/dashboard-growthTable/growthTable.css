@@ -1,0 +1,106 @@
+/* === Table Title ===  */
+.growth-table-title {
+  text-align: center;
+  color: #205781;
+  margin: 0.5em 0 0.5rem 0;
+}
+
+/* === Table Wrapper ===  */
+.growth-table-wrapper {
+  display: flex;
+  overflow-x: auto;
+  flex-direction: column;
+}
+
+.growth-table-wrapper.fill-height .growth-table-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* === Table Layout ===  */
+.growth-table {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  table-layout: fixed;
+  background-color: white;
+  border: 3px double #205781;
+}
+
+.growth-table th,
+.growth-table td {
+  padding: 5px 6px;
+  border: 1px solid #d0d7e2;
+  font-size: 14px;
+}
+
+/* === Table Headers ===  */
+.growth-table th {
+  color: black;
+}
+
+.growth-table thead th {
+  background-color: #f4f7fb;
+  text-align: right;
+  white-space: nowrap;
+  text-wrap: inherit;
+}
+
+.growth-table thead th:first-child {
+  text-align: left;
+}
+
+/* === Table Body ===  */
+.growth-table tbody td {
+  text-align: right;
+  vertical-align: middle;
+}
+
+.growth-table tbody td:first-child {
+  text-align: left;
+}
+
+/* === Table Cell Values ===  */
+.numeric-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+/* === Table %Growth ===  */
+.growth-value {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.growth-value.positive {
+  color: #2e7d32;
+}
+
+.growth-value.negative {
+  color: #c62828;
+}
+
+.growth-value.neutral {
+  color: #999;
+}
+
+/* === Table Row Hover ===  */
+.growth-table tbody tr:hover td {
+  background-color: #a8c4ec;
+}
+
+/* === Table Responsiveness ===  */
+@media (max-width: 768px) {
+  .growth-table th,
+  .growth-table td {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .growth-value {
+    font-size: 11px;
+  }
+}

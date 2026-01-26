@@ -1,0 +1,65 @@
+.chart-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-title {
+    margin-bottom: 0.5rem;
+}
+
+.chart-body {
+    height: 300px;
+}
+
+.chart-wrapper.fill-height {
+    height: 100%
+}
+
+.chart-wrapper.fill-height .chart-body {
+    flex: 1;
+    min-height: 0;
+}
+
+.stacked-chart-wrapper {
+    border: 3px double #205781;
+    border-radius: 5px;
+    padding: 5px 0px;
+    background-color: white;
+}
+
+.chart-tooltip {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 12px;
+}
+
+.tooltip-label {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.tooltip-value {
+    margin: 2px 0;
+    white-space: nowrap;
+}
+
+.recharts-default-legend {
+    font-size: 14px;
+    
+}
+
+.recharts-cartesian-axis-tick text {
+    font-size: 12px;
+    fill: #333;
+}
+
+.recharts-label-list text {
+    pointer-events: none;
+}
+
+.recharts-bar-rectangle {
+    transition: opacity 0.15s ease-in-out;
+}

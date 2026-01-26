@@ -1,0 +1,29 @@
+.chart-card {
+    border: 3px double #205781;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.chart-tooltip {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.tooltip-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.tooltip-value {
+  font-size: 14px;
+}
+
+.chart-title {
+  text-align: center;
+  font-size: 18px;
+  color: #205781;
+  margin: 0 0 0.5rem 0;
+}

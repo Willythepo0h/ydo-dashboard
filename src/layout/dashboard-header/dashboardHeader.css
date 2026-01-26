@@ -9,13 +9,13 @@
   box-sizing: border-box;
 }
 
-.header-logo {
+.dashboard-header-logo {
   height: clamp(48px, 6vw, 96px);
   width: auto;
   padding: 5px;
 }
 
-.header-text {
+.dashboard-header-text {
   flex: 1;
   font-size: clamp(1rem, 2.5vw, 2rem);
   color: #8fd6e1;

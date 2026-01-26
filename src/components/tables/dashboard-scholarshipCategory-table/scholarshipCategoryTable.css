@@ -1,0 +1,66 @@
+.pivot-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.pivot-table-wrapper.fill-height {
+    height: 100%;
+}
+
+.pivot-table-wrapper.fill-height .pivot-table-border {
+    flex: 1;
+    overflow: auto;
+}
+
+.pivot-table {
+  width: 100%;
+  table-layout: fixed;
+  border: 3px double #205781;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.pivot-table th,
+.pivot-table td {
+  padding: 5px 6px;
+  border: 1px solid #d0d7e2;
+  font-size: 14px;
+}
+
+.pivot-table thead th {
+  background-color: #f4f7fb;
+  font-weight: 600;
+  white-space: nowrap;
+  text-wrap: inherit;
+}
+
+.pivot-table tbody tr:hover td {
+  background-color: #a8c4ec;
+}
+
+.pivot-table tbody tr td {
+  transition: background-color 0.15s ease-in-out;
+}
+
+.pivot-table-column-header {
+  text-align: left;
+  color: black;
+}
+
+.acadyear-header {
+  color: black;
+}
+
+.acadyear-header,
+.total-value,
+.scholar-count {
+  text-align: right;
+}
+
+.pivot-table td {
+  vertical-align: top;
+}
+
+.pivot-table td[rowspan] {
+  vertical-align: top;
+}

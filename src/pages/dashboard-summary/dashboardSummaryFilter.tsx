@@ -1,0 +1,97 @@
+// This file is responsible for filtering data 
+// SummaryFilter.tsx
+
+import { FilterDropdown } from "../../components/ui-elements/dashboard-filter-dropdown/dashboardFilterButton";
+import type { Filters } from "./useSummaryFilters";
+
+interface SummaryFiltersProp {
+    filters: Filters;
+    setFilters: React.Dispatch<React.SetStateAction<Filters>>
+    options: {
+        acadYear: string[];
+        scholarshipType: string[];
+        categories: string[];
+        school: string[];
+        schoolClassification: string[]
+    };
+    startTransition: React.TransitionStartFunction;
+}
+
+export function SummaryFilters({
+    filters, setFilters, options, startTransition
+}: SummaryFiltersProp) {
+    return (
+        <div className='filter-button-container'>
+            <FilterDropdown
+            label=''
+            placeholder='Academic Year'
+            options={options.acadYear}
+            value={filters.acadYear}
+            onChange={(v) =>
+                startTransition(() => {
+                setFilters(f => ({ ...f, acadYear: v }));
+                })
+            }
+            searchable={false}
+            multiSelect={true}
+            />
+
+            <FilterDropdown 
+            label=''
+            placeholder='Scholarship Type'
+            options={options.scholarshipType}
+            value={filters.scholarshipType}
+            onChange={(v) =>
+                startTransition(() => {
+                setFilters(f => ({ ...f, scholarshipType: v }));
+                })
+            }
+            searchable={false}
+            multiSelect={true}
+            />
+
+            <FilterDropdown
+            label=''
+            placeholder="Scholarship Category"
+            options={options.categories}
+            value={filters.categories}
+            onChange={(v) =>
+                startTransition(() => {
+                setFilters(f => ({ ...f, categories: v }));
+                })
+            }
+            searchable={false}
+            multiSelect={true}
+            />
+
+            <FilterDropdown
+            label=''
+            placeholder="School Name"
+            options={options.school}
+            value={filters.school}
+            onChange={(v) =>
+                startTransition(() => {
+                setFilters(f => ({ ...f, school: v }));
+                })
+            }
+            searchable={true}
+            searchPlaceholder='Search School...'
+            multiSelect={true}
+            />
+
+            <FilterDropdown 
+            label=''
+            placeholder='School Classification'
+            options={options.schoolClassification}
+            value={filters.schoolClassification}
+            onChange={(v) =>
+                startTransition(() => {
+                setFilters(f => ({ ...f, schoolClassification: v }));
+                })
+            }
+            searchable={false}
+            multiSelect={true}
+            />
+        </div>
+    )
+}

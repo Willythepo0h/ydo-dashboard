@@ -1,0 +1,25 @@
+.dashboard-sidenav {
+    display: flex;
+    height: calc(100vh - 80px); 
+    gap: 0.5rem;
+    display: flex;
+    width: clamp(180px, 22vw, 240px);
+    padding: 5px 1rem 5px 1rem;
+    flex-direction: column;
+    background-color: white;
+    overflow-y: auto;
+    overflow-x: visible;
+}
+
+.dashboard-navbutton-wrapper {
+    display: flex;
+    align-items: stretch; 
+    flex-direction: column;
+    row-gap: 0.2rem;
+}
+
+.dashboard-sidenav-text {
+    color: black;
+    border-bottom: 3px double black;
+}
+

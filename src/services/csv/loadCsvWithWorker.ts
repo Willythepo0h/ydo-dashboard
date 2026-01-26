@@ -1,42 +1,50 @@
+// loadCsvWithWorker.ts
 // Responsibility: send raw CSV to the worker and get back parsed rows.
 // Communicates with: workers/csvWorker.ts.
-// Output: cleaned & parsed rows (array of objects) ready for React state.
+// Output: cleaned & parsed rows (RawCsvRow[]) ready for React state.
 
-import type { RawCsvRow } from "./types";
+import type { RawCsvRow, WorkerRequest, WorkerResponse } from "./types";
 
-let worker: Worker | null = null;
-
-function getWorker() {
-  if (!worker) {
-    worker = new Worker(
+export function loadCsvWithWorker(
+  csvText: string,
+  options: { headerRowIndex?: number; allowedColumns?: string[] } = {},
+): Promise<RawCsvRow[]> {
+  return new Promise((resolve, reject) => {
+    // Create a new worker per request (concurrent-safe)
+    const worker = new Worker(
       new URL("../../workers/csvWorker.ts", import.meta.url),
       { type: "module" },
     );
-  }
-  return worker;
-}
 
-export function loadCsvWithWorker(csvText: string): Promise<RawCsvRow[]> {
-  return new Promise((resolve, reject) => {
-    const w = getWorker();
+    const handleMessage = (e: MessageEvent<WorkerResponse>) => {
+      worker.removeEventListener("message", handleMessage);
+      worker.removeEventListener("error", handleError);
 
-    const handleMessage = (e: MessageEvent) => {
-      w.removeEventListener("message", handleMessage);
-      w.removeEventListener("error", handleError);
+      if (e.data.type === "error") reject(new Error(e.data.error));
+      else {
+        // Worker already outputs RawCsvRow[] (all values are strings)
+        resolve(e.data.data);
+      }
 
-      if (e.data.error) reject(e.data.error);
-      else resolve(e.data.data);
+      worker.terminate();
     };
 
     const handleError = (err: ErrorEvent) => {
-      w.removeEventListener("message", handleMessage);
-      w.removeEventListener("error", handleError);
-      reject(err);
+      worker.removeEventListener("message", handleMessage);
+      worker.removeEventListener("error", handleError);
+      worker.terminate();
+      reject(err.error || new Error(err.message));
     };
 
-    w.addEventListener("message", handleMessage);
-    w.addEventListener("error", handleError);
+    worker.addEventListener("message", handleMessage);
+    worker.addEventListener("error", handleError);
 
-    w.postMessage(csvText);
+    const request: WorkerRequest = {
+      csvText,
+      headerRowIndex: options.headerRowIndex ?? 1,
+      allowedColumns: options.allowedColumns,
+    };
+
+    worker.postMessage(request);
   });
 }
