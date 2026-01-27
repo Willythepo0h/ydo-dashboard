@@ -1,0 +1,59 @@
+.table-chart-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-chart {
+    width: 100%;
+    table-layout: fixed; 
+    border: 3px double #205781;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.table-chart th,
+.table-chart td {
+    padding: 5px 6px;
+    border: 1px solid #d0d7e2;
+    font-size: 14px;
+}
+
+.table-chart thead th:first-child {
+  text-align: left;
+}
+
+.table-chart thead th {
+  background-color: #f4f7fb;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+  text-wrap: inherit;
+}
+
+.table-chart tbody td {
+  text-align: right;
+  vertical-align: middle;
+}
+
+.table-chart tbody td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+.table-chart tbody tr:hover td {
+  background-color: #a8c4ec;
+}
+
+.cell-positive {
+  color: #2e7d32;
+  background-color: rgba(46, 125, 50, 0.08);
+}
+
+.cell-negative {
+  color: #c62828;
+  background-color: rgba(198, 40, 40, 0.08);
+}
+
+.cell-neutral {
+  color: #555;
+}

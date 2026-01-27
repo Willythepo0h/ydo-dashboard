@@ -14,6 +14,8 @@ import { KpiCard } from "../../../components/charts/dashboard-kpicard/dashboardK
 import ScholarshipCatBySex from "../../../components/tables/dashboard-catbysex-table/scholarshipCatBySex";
 import { StackedBarChart } from "../../../components/charts/dashboard-stackedchart/dashboardStackedChart";
 import { useStackedBarData } from "../../../hooks/useStackedBarChartData";
+import { useTableChartData } from "../../../hooks/useTableChartData";
+import { TableChart } from "../../../components/tables/dashboard-table-chart/dashboardTableChart";
 
 interface Props {
   rows: RawCsvRow[];
@@ -57,6 +59,15 @@ export function ScholarDemographicsSection({ rows }: Props) {
         stackDimension: "SEX",
         normalize: true,
         filter: isCosReleased,
+    });
+
+    const { years: lgbtScholarshipCatyears, rows: lgbtScholarshipCatrows } =
+    useTableChartData({
+      rows,
+      rowDimension: "SCHOLARSHIP CATEGORY",
+      yearDimension: "ACADEMIC YEAR COVER",
+      filter: (row) =>
+        isCosReleased(row) && String(row["LGBTQIA+"] ?? "").trim() !== "",
     });
 
     const maleKpi = useKpiCount({
@@ -173,12 +184,12 @@ export function ScholarDemographicsSection({ rows }: Props) {
                 icon={<img src={lgbtFlagURL} alt="LGBT Flag" />}
               />
 
-              {/* <TableChart
+             <TableChart
                 title="ANNUAL LGBTQIA+ BREAKDOWN BY SCHOLARSHIP CATEGORY"
                 column="SCHOLARSHIP CATEGORY"
                 rows={lgbtScholarshipCatrows}
                 columns={lgbtScholarshipCatyears}
-              /> */}
+              />
             </div>
 
             <div className="dashboard-column stretch">
