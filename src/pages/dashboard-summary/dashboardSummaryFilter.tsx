@@ -1,5 +1,16 @@
-// This file is responsible for filtering data 
-// SummaryFilter.tsx
+/**
+ * Dashboard filter component for scholarship summary data.
+ *
+ * Responsibilities:
+ * - Renders multiple filter dropdowns for academic year, scholarship type,
+ *   scholarship category, school name, and school classification
+ * - Handles multi-select and optional search functionality
+ * - Updates the parent filter state using React transitions for
+ *   smooth, non-blocking UI updates
+ *
+ * Designed to centralize filter UI and logic, ensuring consistent
+ * filtering behavior across summary tables and charts.
+ */
 
 import { FilterDropdown } from "../../components/ui-elements/dashboard-filter-dropdown/dashboardFilterButton";
 import type { Filters } from "./useSummaryFilters";

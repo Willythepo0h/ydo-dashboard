@@ -1,3 +1,16 @@
+/**
+ * Domain-specific utility predicates and normalization helpers
+ * for scholarship data processing.
+ *
+ * This module centralizes:
+ * - Common row-level predicates used across filters and aggregations
+ * - String normalization helpers for consistent comparisons
+ * - Scholarship category bucketing logic for chart-specific groupings
+ *
+ * Intended to reduce duplication and enforce consistent business rules
+ * across data transformation and visualization layers.
+ */
+
 import type { RawCsvRow } from "../services/csv/types"
 
 export const isCosReleased = (r: RawCsvRow) =>

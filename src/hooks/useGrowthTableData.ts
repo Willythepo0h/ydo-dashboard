@@ -1,3 +1,16 @@
+/**
+ * Custom React hook for computing year-over-year growth data for dashboard tables.
+ *
+ * Responsibilities:
+ * - Aggregates counts of rows by a specified row dimension and year dimension
+ * - Optionally filters rows before aggregation
+ * - Computes year-over-year growth (absolute and percentage) for each row label
+ * - Returns the set of years and structured rows suitable for table/chart display
+ *
+ * Designed to centralize growth computation logic and memoize results
+ * for performance in React components.
+ */
+
 import { useMemo } from "react";
 import type { RawCsvRow } from "../services/csv/types";
 

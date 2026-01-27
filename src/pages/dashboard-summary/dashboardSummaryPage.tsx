@@ -1,7 +1,23 @@
+/**
+ * Main dashboard page for scholarship summary data.
+ *
+ * Responsibilities:
+ * - Fetches scholarship data via `useScholarshipData` hook
+ * - Manages filter state using `useSummaryFilters` and updates via
+ *   `SummaryFilters` component
+ * - Delegates filtering to `useFilteredRowsWorker` for off-main-thread processing
+ * - Renders summary sections including:
+ *    - `ScholarshipCategorySection` for category breakdown
+ *    - `ScholarDemographicsSection` for demographic analysis
+ * - Handles loading and error states with `LoadingAnimation` and fallback UI
+ *
+ * Designed to provide a responsive, interactive dashboard experience
+ * with smooth state transitions and centralized filter management.
+ */
+
 import './dashboardSummaryPage.css'
 import { useEffect } from 'react';
 
-// SummaryPage.tsx
 // For hooks:
 import { useScholarshipData } from "../../hooks/useScholarshipData";
 import { useFilteredRowsWorker } from '../../hooks/useFilteredRowsWorker';
@@ -13,6 +29,7 @@ import LoadingAnimation from '../../components/ui-elements/dashboard-loading-ani
 import DashboardLayout from '../../layout/dashboard-layout/dashboardLayout';
 import { ScholarshipCategorySection } from '../../layout/dashboard-sections/dashboard-summary-sections/scholarshipCategorySection';
 import { ScholarDemographicsSection } from '../../layout/dashboard-sections/dashboard-summary-sections/scholarshipDemographicSection';
+
 // Other dependencies:
 import { useTransition } from "react";
 import { SummaryFilters } from './dashboardSummaryFilter';

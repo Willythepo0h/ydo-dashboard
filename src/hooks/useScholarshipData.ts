@@ -1,3 +1,16 @@
+/**
+ * Custom React hook for fetching and caching scholarship CSV data.
+ *
+ * Responsibilities:
+ * - Loads scholarship data from the CSV service (`getScholarshipData`)
+ * - Caches results in memory to prevent redundant fetches across components
+ * - Provides loading and error state for UI feedback
+ * - Exposes a helper `getUniqueValues` to extract unique column values for filters
+ *
+ * Designed to centralize data fetching, caching, and utility access
+ * for all dashboard components that consume scholarship data.
+ */
+
 import { useEffect, useMemo, useState } from "react";
 import { getScholarshipData } from "../services/csv";
 import type { RawCsvRow } from "../services/csv/types";

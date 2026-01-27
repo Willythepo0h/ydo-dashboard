@@ -1,5 +1,12 @@
-// Responsibility: fetch the CSV file from your Google Sheets endpoint.
-// Output: raw CSV text.
+/**
+ * Data-fetching utility responsible for retrieving the CSV file from a
+ * configured Google Sheets csv endpoint url.
+ *
+ * The function applies in-memory caching (TTL-based), supports forced
+ * refreshes, retries failed requests, and exposes abort handling.
+ * Returns the unparsed CSV text for downstream processing.
+ */
+
 
 let cachedText: string | null = null;
 let cachedAt = 0;

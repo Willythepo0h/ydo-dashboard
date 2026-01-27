@@ -1,3 +1,15 @@
+/**
+ * React component for displaying a single Key Performance Indicator (KPI) card.
+ *
+ * Responsibilities:
+ * - Shows a label, numeric value, and total count
+ * - Computes and displays the percentage of value relative to total
+ * - Optionally renders a custom icon
+ * - Styled for dashboard KPI display
+ *
+ * Designed for concise visualization of important metrics in the dashboard.
+ */
+
 import type React from "react";
 import './dashboardKPICard.css'
 

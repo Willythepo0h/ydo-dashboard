@@ -1,9 +1,21 @@
+/**
+ * Web Worker responsible for applying filter logic to processed scholarship data.
+ *
+ * This worker:
+ * - Receives fully parsed and normalized CSV rows from the main thread
+ * - Applies multi-criteria filtering (academic year, scholarship type, category,
+ *   school, and school classification)
+ * - Executes filtering off the main UI thread for performance
+ * - Returns the filtered dataset (or original rows if no filters are applied)
+ *
+ * Designed to support responsive, real-time dashboard interactions
+ * such as dropdown filters and multi-select controls.
+ */
+
 self.onmessage = (e) => {
   const { rows, filters, requestId } = e.data;
 
   const normalize = (v: string) => v.trim();
-
-  // Pre-build filter sets (O(1) lookups)
   const acadYearSet = filters.acadYear?.length
     ? new Set(filters.acadYear.map(normalize))
     : null;
@@ -24,7 +36,6 @@ self.onmessage = (e) => {
     ? new Set(filters.schoolClassification.map(normalize))
     : null;
 
-  // Fast path: no filters applied → return rows immediately
   if (
     !acadYearSet &&
     !scholarshipTypeSet &&

@@ -1,3 +1,20 @@
+/**
+ * Generic pivot-table utility for counting two-dimensional categorical data.
+ *
+ * This module provides a reusable helper for transforming a flat dataset
+ * into a pivot-style structure (row × column counts), suitable for
+ * tables, heatmaps, and aggregated charting.
+ *
+ * Features:
+ * - Single-pass aggregation for performance
+ * - Configurable row and column key selectors
+ * - Optional row-level filtering
+ * - Precomputed column totals for summary views
+ *
+ * Designed for analytics-heavy dashboard components where flexible,
+ * type-safe aggregation is required.
+ */
+
 export type PivotResult<RowKey extends string, ColKey extends string> = {
   rowKeys: RowKey[]
   colKeys: ColKey[]

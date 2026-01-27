@@ -1,3 +1,16 @@
+/**
+ * Sidebar navigation component for the scholarship dashboard.
+ *
+ * Responsibilities:
+ * - Renders a set of primary navigation buttons for switching
+ *   between dashboard views (e.g., Summary, Fiscal Year)
+ * - Highlights the currently active view
+ * - Optionally displays a filter section passed as a prop
+ *
+ * Designed to provide consistent, accessible sidebar navigation
+ * and filter access across all dashboard pages.
+ */
+
 import { useState } from "react";
 import DashboardNavButton from "../../components/ui-elements/dashboard-navigation-button/dashboardNavButton";
 import type { ReactNode } from "react";

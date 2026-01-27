@@ -1,3 +1,16 @@
+/**
+ * Custom React hook for preparing data for stacked bar charts.
+ *
+ * Responsibilities:
+ * - Aggregates rows by a group dimension and a stack dimension
+ * - Optionally filters rows before aggregation
+ * - Computes raw counts and, if `normalize` is true, converts counts to percentages
+ * - Returns structured data and the list of stack keys for chart rendering
+ *
+ * Designed to centralize stacked bar chart data preparation and memoize
+ * results for performance in React components.
+ */
+
 import { useMemo } from "react";
 import type { RawCsvRow } from "../services/csv/types";
 

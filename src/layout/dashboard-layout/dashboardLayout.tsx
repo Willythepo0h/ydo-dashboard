@@ -1,3 +1,14 @@
+/**
+ * Core layout component for the scholarship dashboard.
+ *
+ * Responsibilities:
+ * - Renders the dashboard header (`DashboardHeader`) and side navigation (`DashboardSideNav`)
+ * - Accepts an optional filter component to display in the sidebar
+ * - Wraps the main content area where page-specific components are rendered
+ *
+ * Provides consistent layout structure and styling across all dashboard pages.
+ */
+
 import DashboardHeader from '../dashboard-header/dashboardHeader'
 import DashboardSideNav from '../dashboard-sidenav/dashboardSideNav'
 

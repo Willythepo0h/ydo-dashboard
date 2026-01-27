@@ -1,3 +1,16 @@
+/**
+ * Custom React hook for preparing bar chart data from raw CSV rows.
+ *
+ * Responsibilities:
+ * - Groups rows by a specified dimension (column)
+ * - Optionally applies a metric function to compute numeric values per group
+ * - Supports normalization of string keys for consistent grouping
+ * - Returns an array of objects (`BarChartDatum[]`) suitable for charting
+ *
+ * Designed to centralize bar chart data aggregation and memoize results
+ * for performance in React components.
+ */
+
 import { useMemo } from "react";
 import type { RawCsvRow } from "../services/csv/types";
 

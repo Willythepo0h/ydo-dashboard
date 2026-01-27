@@ -1,3 +1,14 @@
+/**
+ * Dashboard header component for the QC Scholarship Program Dashboard.
+ *
+ * Responsibilities:
+ * - Displays the QC Government and YDO logos
+ * - Renders the dashboard title
+ * - Provides consistent header layout and styling across all dashboard pages
+ *
+ * Designed to be a simple, reusable header component with branding.
+ */
+
 import "./dashboardHeader.css";
 import qcLogo from "../../assets/logos/qcg-logo.svg";
 import ydoLogo from "../../assets/logos/ydo-logo.svg";

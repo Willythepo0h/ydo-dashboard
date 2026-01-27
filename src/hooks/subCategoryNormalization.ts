@@ -1,3 +1,17 @@
+/**
+ * Utilities for normalizing scholarship sub-categories.
+ *
+ * Responsibilities:
+ * - Provides mapping rules to standardize sub-category names
+ *   across senior high school and tertiary scholarship types
+ * - Handles empty, "n/a", or inconsistent input by returning
+ *   a placeholder value (`UNKNOWN_SUBCATEGORY`)
+ * - Ensures consistent naming for aggregation, reporting, and charting
+ *
+ * This module is used to reduce inconsistencies in sub-category
+ * data and support reliable analysis and visualization.
+ */
+
 export const subCategoryNormalization: Record<string, Record<string, string>> = {
   'Scholarship For Senior High School Students': {
     '': 'Academic Scholarship',

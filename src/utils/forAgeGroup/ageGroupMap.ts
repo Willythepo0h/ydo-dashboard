@@ -1,3 +1,15 @@
+/**
+ * Defines and manages age group categories for scholarship data.
+ *
+ * This module provides:
+ * - Type definitions for known and unknown age groups
+ * - Ordered constants for consistent table/chart rendering
+ * - A helper (`getAgeGroup`) to categorize numeric ages into age groups
+ *
+ * It ensures consistent age-group handling across normalization,
+ * aggregation, filtering, and visualization layers.
+ */
+
 export type KnownAgeGroup =
   | '13–15'
   | '16–18'

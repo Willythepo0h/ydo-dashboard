@@ -1,3 +1,18 @@
+/**
+ * Custom React hook for filtering scholarship rows off the main thread.
+ *
+ * Responsibilities:
+ * - Uses a Web Worker (`filterWorker.ts`) to filter large datasets
+ *   without blocking the UI
+ * - Accepts raw CSV rows and filter state, returning only the rows
+ *   that match the active filters
+ * - Handles request IDs to ensure only the latest worker response updates state
+ * - Falls back to returning all rows when no filters are active
+ *
+ * Designed for responsive dashboards where filtering large datasets
+ * must not interrupt UI interactions.
+ */
+
 import { useEffect, useRef, useState } from "react";
 import type { RawCsvRow } from "../services/csv/types";
 import type { Filters } from "../pages/dashboard-summary/useSummaryFilters";

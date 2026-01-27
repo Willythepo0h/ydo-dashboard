@@ -4,7 +4,7 @@
     align-items: center;
     --color: #150e56;
     --animation: 2s ease-in-out infinite;
-    height: 100vh;
+    height: 80vh;
 }
 
 .loader .circle {

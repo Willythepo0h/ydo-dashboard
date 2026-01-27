@@ -1,3 +1,20 @@
+/**
+ * Web Worker responsible for parsing and normalizing raw CSV data.
+ *
+ * This worker is invoked by `loadCsvWithWorker.ts` and performs all
+ * CPU-intensive CSV processing off the main thread.
+ *
+ * Responsibilities:
+ * - Parse raw CSV text using PapaParse
+ * - Normalize headers (trim, uppercase)
+ * - Handle non-standard header rows (via `headerRowIndex`)
+ * - Prune columns to a predefined or caller-specified allowlist
+ * - Return cleaned rows ready for application-level consumption
+ *
+ * Output:
+ * - An array of normalized records (`RawCsvRow[]`) posted back to the main thread
+ */
+
 import Papa from "papaparse";
 import type { WorkerRequest, WorkerResponse } from "../services/csv/types";
 
@@ -21,7 +38,7 @@ self.onmessage = (event: MessageEvent<WorkerRequest>) => {
     ? new Set(allowedColumns.map(c => c.toUpperCase()))
     : DEFAULT_ALLOWED_COLUMNS;
 
-  const start = performance.now();
+  // const start = performance.now();
 
   Papa.parse<Record<string, string>>(csvText, {
     header: true,    
@@ -45,12 +62,9 @@ self.onmessage = (event: MessageEvent<WorkerRequest>) => {
           return filteredRow;
         });
 
-        console.log(
-          `csvWorker: parsed ${data.length} rows in ${(performance.now() - start).toFixed(2)}ms`
-        );
-
-        console.log("First row keys:", Object.keys(data[0] ?? {}));
-        console.log("First row full:", data[0]);
+        // console.log(
+        //   `csvWorker: parsed ${data.length} rows in ${(performance.now() - start).toFixed(2)}ms`
+        // );
 
         postSuccess(data);
       } catch (err) {

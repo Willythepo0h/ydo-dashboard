@@ -19,8 +19,9 @@
   font-weight: 500;
 }
 
-.kpi-icon {
-  font-size: 18px;
+.kpi-icon-progress svg {
+  width: 18px;
+  height: 18px;
 }
 
 .kpi-label {

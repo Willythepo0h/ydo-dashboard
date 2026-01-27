@@ -1,3 +1,18 @@
+/**
+ * Custom React hook for managing summary filters in the scholarship dashboard.
+ *
+ * Responsibilities:
+ * - Maintains filter state for academic year, scholarship type,
+ *   scholarship category, school, and school classification
+ * - Computes available filter options dynamically from the dataset
+ *   to populate filter dropdowns
+ * - Returns the current filters, a setter function, and sorted
+ *   option lists for use in filter components
+ *
+ * Designed to centralize filter state and option computation,
+ * ensuring consistent filtering behavior across the dashboard.
+ */
+
 import { useMemo, useState } from "react";
 import type { RawCsvRow } from "../../services/csv/types";
 

@@ -1,3 +1,11 @@
+/**
+ * Represents a single normalized row extracted from the CSV.
+ *
+ * - Keys correspond to normalized CSV headers
+ * - Values are raw string values as provided by the source
+ * - Used throughout the data pipeline and visualization layers
+ */
+
 export type RawCsvRow = Record<string, string>;
 
 export type WorkerRequest = {

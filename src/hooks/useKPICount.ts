@@ -1,3 +1,15 @@
+/**
+ * Custom React hook for computing KPI counts and percentages.
+ *
+ * Responsibilities:
+ * - Counts the number of rows matching a `valueFilter`
+ * - Counts the total number of rows matching a `totalFilter` (or all rows if undefined)
+ * - Computes the percentage of value rows relative to the total
+ * - Returns an object containing `value`, `total`, and `pct` suitable for KPI display
+ *
+ * Designed for centralized, memoized KPI calculations for dashboard components.
+ */
+
 import { useMemo } from "react";
 import type { RawCsvRow } from "../services/csv/types";
 
