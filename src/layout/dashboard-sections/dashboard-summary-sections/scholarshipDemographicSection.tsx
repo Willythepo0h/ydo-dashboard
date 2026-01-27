@@ -16,12 +16,31 @@ import { StackedBarChart } from "../../../components/charts/dashboard-stackedcha
 import { useStackedBarData } from "../../../hooks/useStackedBarChartData";
 import { useTableChartData } from "../../../hooks/useTableChartData";
 import { TableChart } from "../../../components/tables/dashboard-table-chart/dashboardTableChart";
+import { AGE_GROUP_ORDER } from "../../../utils/forAgeGroup/ageGroupMap";
+import { excludeUnknownAgeGroups } from "../../../utils/forAgeGroup/ageGroupFilter";
+import { normalizeRows } from "../../../utils/forAgeGroup/normalizeRows";
+import { AgeGroupTableChart } from "../../../components/tables/dashboard-agrGroup-table/ageGroupTable";
 
 interface Props {
   rows: RawCsvRow[];
 }
 
 export function ScholarDemographicsSection({ rows }: Props) {
+
+    const normalizedRows = excludeUnknownAgeGroups(normalizeRows(rows));
+
+    const { years: ageYears, rows: ageGrowthRows } = useGrowthTableData({
+    rows: normalizedRows,
+    rowDimension: "AGE_GROUP",
+    yearDimension: "ACADEMIC YEAR COVER",
+    filter: isCosReleased,
+    });
+
+    const sortedAgeGrowthRows = [...ageGrowthRows].sort(
+    (a, b) =>
+      AGE_GROUP_ORDER.indexOf(a.label as any) -
+      AGE_GROUP_ORDER.indexOf(b.label as any),
+    );
 
     const { years, rows: growthRows } = useGrowthTableData({
     rows,
@@ -206,7 +225,7 @@ export function ScholarDemographicsSection({ rows }: Props) {
       </section>
 
       {/* ================= AGE GROUP ================= */}
-      {/* <section className="demographic-section">
+       <section className="demographic-section">
         <h3 className="section-label">AGE GROUP DISTRIBUTION</h3>
 
         <div className="demographic-card">
@@ -215,7 +234,7 @@ export function ScholarDemographicsSection({ rows }: Props) {
               title="SCHOLARSHIP CATEGORY BY AGE GROUP"
               rows={rows}
               rowDimension="SCHOLARSHIP CATEGORY"
-            />
+            /> 
 
             <GrowthTableChart
               title="YEAR-OVER-YEAR SCHOLAR % GROWTH BY AGE GROUP"
@@ -226,7 +245,7 @@ export function ScholarDemographicsSection({ rows }: Props) {
             />
           </div>
         </div>
-      </section> */}
+      </section>
     </section>
     )
 }
