@@ -39,7 +39,7 @@ const ScholarshipCatBySex = ({ rows, fillHeight }: Props) => {
                 sexes.map((sex, idx) => (
                   <tr key={`${category}-${sex}`}>
                     {idx === 0 && (
-                      <td rowSpan={sexes.length}>
+                      <td className="cell-clamp" rowSpan={sexes.length}>
                         {category}
                       </td>
                     )}

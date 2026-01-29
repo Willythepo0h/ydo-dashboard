@@ -129,7 +129,7 @@ export function ScholarDemographicsSection({ rows }: Props) {
       <section className="demographic-section">
         <h3 className="section-label">SEX DISTRIBUTION</h3>
 
-        <div className="demographic-card">
+         <div className="demographic-card">
           {/* KPI ROW */}
           <div className="kpi-row">
             <KpiProgressCard
@@ -151,6 +151,7 @@ export function ScholarDemographicsSection({ rows }: Props) {
 
           {/* CATEGORY + TABLE */}
           <section className="dashboard-row two-column">
+            <div className="dashboard-column">
             <StackedBarChart
               title="SEX DISTRIBUTION BY SCHOLARSHIP CATEGORY"
               data={data}
@@ -159,8 +160,8 @@ export function ScholarDemographicsSection({ rows }: Props) {
               isHorizontal
               fillHeight
             />
-            <ScholarshipCatBySex rows={rows} fillHeight />
-          </section>
+            </div>
+            <ScholarshipCatBySex rows={rows} fillHeight />          </section>
 
           {/* CLASSIFICATION + GROWTH */}
           <section className="dashboard-row two-column">
@@ -207,6 +208,7 @@ export function ScholarDemographicsSection({ rows }: Props) {
                 column="SCHOLARSHIP CATEGORY"
                 rows={lgbtScholarshipCatrows}
                 columns={lgbtScholarshipCatyears}
+                fillHeight
               />
             </div>
 
@@ -224,7 +226,7 @@ export function ScholarDemographicsSection({ rows }: Props) {
       </section>
 
       {/* AGE GROUP DISTRIBUTION */}
-      <section className="demographic-section">
+      <section className="demographic-section-ageGroup">
         <h3 className="section-label">AGE GROUP DISTRIBUTION</h3>
 
         <div className="demographic-card">

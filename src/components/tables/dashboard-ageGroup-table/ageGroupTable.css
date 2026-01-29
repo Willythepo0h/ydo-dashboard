@@ -41,3 +41,9 @@
 .age-group-table tbody tr:hover td {
   background-color: #a8c4ec;
 }
+
+.cell-clamp {
+  white-space: normal;
+  text-wrap: inherit;
+  word-break: break-word;
+}

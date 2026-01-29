@@ -30,30 +30,31 @@ export function CustomXAxisTick({
   const formattedValue = absoluteValue != null ? absoluteValue.toLocaleString() : '-'
 
   // Decide rotation and font size dynamically
-  const { rotateAngle, fontSize, dyLabel, dyValue, dyPercent, dxPercent } = useMemo(() => {
+  const { rotateAngle, fontSize, dyLabel, dyValue, dyPercent, dxPercent, showMainLabel } = useMemo(() => {
     if (containerWidth < 50) {
       return { 
-        rotateAngle: -45, 
+        rotateAngle: 0, 
         fontSize: 10, 
-        dyLabel: 12, 
-        dyValue: 24,
-        dyPercent: 36, 
-        dxPercent: -10 };
-    } else if (containerWidth < 200) {
+        dyLabel: 10, 
+        dyPercent: 30, 
+        dxPercent: 0,
+        showMainLabel: false };
+    } else if (containerWidth < 250) {
       return { 
-        rotateAngle: -30, 
-        fontSize: 10, 
-        dyLabel: 14,
-        dyValue: 28,
-        dyPercent: 42, 
-        dxPercent: -10 };
+        rotateAngle: 0, 
+        fontSize: 12, 
+        dyValue: 10,
+        dyPercent: 30, 
+        dxPercent: 0,
+        showMainLabel: false };
     }
     return { 
       rotateAngle: 0, 
       fontSize: 12, 
       dyLabel: 16, 
       dyValue: 32,
-      dyPercent: 48 
+      dyPercent: 48,
+      showMainLabel: true
     };
   }, [containerWidth]);
 
@@ -62,6 +63,7 @@ export function CustomXAxisTick({
   return (
     <g transform={`translate(${x}, ${y})`}>
       {/* Main label */}
+      {showMainLabel && (
       <text
         x={0}
         y={0}
@@ -74,7 +76,9 @@ export function CustomXAxisTick({
       >
         {labelKey}
       </text>
+      )}
 
+      {/* Whole number label */}
       <text
         dy={dyValue}
         textAnchor={textAnchor}

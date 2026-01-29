@@ -24,7 +24,7 @@ export function GrowthTableChart({
 }: GrowthTableProps) {
   return (
     <div className={`growth-table-wrapper ${fillHeight ? "fill-height" : ""}`}>
-      {title && <h3 className="growth-table-title">{title}</h3>}
+      {title && <h3 className="chart-title">{title}</h3>}
       <div className="growth-table-body">
         <table className="growth-table">
           <thead>
@@ -38,7 +38,7 @@ export function GrowthTableChart({
           <tbody>
             {rows.map((row) => (
               <tr key={row.label}>
-                <td>{row.label}</td>
+                <td className="cell-clamp">{row.label}</td>
                 {years.map((year, i) => {
                   const value = row.values[year] ?? 0;
                   const growth = row.growth[year];

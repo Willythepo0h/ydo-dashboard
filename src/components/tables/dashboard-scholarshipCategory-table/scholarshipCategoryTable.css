@@ -25,13 +25,15 @@
   padding: 5px 6px;
   border: 1px solid #d0d7e2;
   font-size: 14px;
+  min-width: 0;
 }
 
 .pivot-table thead th {
   background-color: #f4f7fb;
   font-weight: 600;
-  white-space: nowrap;
+  white-space: normal;
   text-wrap: inherit;
+  word-break: break-word;
 }
 
 .pivot-table tbody tr:hover td {
@@ -63,4 +65,10 @@
 
 .pivot-table td[rowspan] {
   vertical-align: top;
+}
+
+.cell-clamp {
+  white-space: normal;
+  text-wrap: inherit;
+  word-break: break-word;
 }

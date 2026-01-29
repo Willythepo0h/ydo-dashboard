@@ -32,7 +32,7 @@ interface XAxisTickBaseProps {
 
 export function BarChart({ data, title }: BarChartProps) {
   const { total, ordered, percentChangeMap, absoluteValueMap } = useBarChartPercentages(data);
-
+  
   const renderXAxisTick = useCallback(
     (props: XAxisTickBaseProps) => {
       const chartWidth = props.width ?? window.innerWidth; 
@@ -53,7 +53,7 @@ export function BarChart({ data, title }: BarChartProps) {
       {title && <h3 className="chart-title">{title}</h3>}
 
       <ResponsiveContainer width="100%" height={300}>
-        <RechartsBarChart data={ordered} margin={{ top: 4, bottom: 4 }}>
+        <RechartsBarChart data={ordered} margin={{ top: 4, bottom: 30 }}>
           <XAxis
             dataKey="name"
             tick={renderXAxisTick}

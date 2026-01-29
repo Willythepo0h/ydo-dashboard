@@ -45,7 +45,7 @@ export function AgeGroupTableChart({ title, rows, rowDimension = 'SCHOLARSHIP CA
       <table className="age-group-table">
         <thead>
           <tr>
-            <th>{rowDimension.replace('_', ' ')}</th>
+            <th className="cell-clamp">{rowDimension.replace('_', ' ')}</th>
             {columns.map(col => (
               <th key={col}>{col}</th>
             ))}
@@ -54,7 +54,7 @@ export function AgeGroupTableChart({ title, rows, rowDimension = 'SCHOLARSHIP CA
         <tbody>
           {finalRows.map(row => (
             <tr key={row.label}>
-              <td className="row-label">{row.label}</td>
+              <td className="cell-clamp">{row.label}</td>
               {columns.map(col => (
                 <td key={col}>{row.values[col].toLocaleString() ?? '0'}</td>
               ))}

@@ -31,7 +31,7 @@ const ScholarshipCategoryTable = ({ rows }: Props) => {
                 return (
                   <tr key={rowKey}>
                     {idx === 0 && (
-                      <td rowSpan={subs.length}>{category}</td>
+                      <td rowSpan={subs.length} className='cell-clamp'>{category}</td>
                     )}
                     <td>{sub}</td>
                     {colKeys.map(col => (

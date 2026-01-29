@@ -10,9 +10,10 @@ interface TableChartProps {
     column?: string;
     rows: TableChartRow[];
     columns?: string[];
+    fillHeight?: boolean;
 }
 
-export function TableChart({ title, column, rows, columns }: TableChartProps) {
+export function TableChart({ title, column, rows, columns, fillHeight = false }: TableChartProps) {
     if (!rows.length) return null;
 
     const resolvedColumns = columns ?? Object.keys(rows[0].values)
@@ -25,7 +26,7 @@ export function TableChart({ title, column, rows, columns }: TableChartProps) {
     };
 
     return (
-        <div className="table-chart-wrapper">
+        <div className={`table-chart-wrapper ${fillHeight ? "fill-height" : ""}`}>
             {title && <h3 className='chart-title'>{title}</h3>}
             <table className="table-chart">
                 <thead>
